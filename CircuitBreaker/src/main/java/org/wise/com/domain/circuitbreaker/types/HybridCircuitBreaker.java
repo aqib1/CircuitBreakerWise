@@ -1,6 +1,7 @@
 package org.wise.com.domain.circuitbreaker.types;
 
 import org.wise.com.domain.circuitbreaker.base.IBreaker;
+
 import java.util.List;
 
 public class HybridCircuitBreaker implements IBreaker {

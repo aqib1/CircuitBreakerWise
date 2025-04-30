@@ -20,7 +20,7 @@ public class CountBasedCircuitBreaker implements IBreaker {
 
     @Override
     public boolean isCallPermitted() {
-        if(getStatus() == BreakerStatus.HALF_OPEN) {
+        if (getStatus() == BreakerStatus.HALF_OPEN) {
             return isCallPermittedForHalfOpenState();
         }
         return getStatus() == BreakerStatus.CLOSED;
@@ -45,7 +45,7 @@ public class CountBasedCircuitBreaker implements IBreaker {
         if (getStatus() == BreakerStatus.CLOSED) {
             failureCount++;
             if (failureCount >= failureCountThreshold) {
-                if(halfOpenThreshold > 0) {
+                if (halfOpenThreshold > 0) {
                     status = BreakerStatus.HALF_OPEN;
                 } else {
                     status = BreakerStatus.OPEN;

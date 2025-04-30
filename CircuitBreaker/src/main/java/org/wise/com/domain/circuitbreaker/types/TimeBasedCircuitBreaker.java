@@ -23,13 +23,12 @@ public class TimeBasedCircuitBreaker implements IBreaker {
 
     @Override
     public boolean isCallPermitted() {
-        if(status == BreakerStatus.OPEN) {
+        if (status == BreakerStatus.OPEN) {
             return isCallPermittedForOpenState();
         }
-        if(status == BreakerStatus.HALF_OPEN) {
+        if (status == BreakerStatus.HALF_OPEN) {
             return isCallPermittedForHalfOpenState();
         }
-
         return true;
     }
 
@@ -60,7 +59,7 @@ public class TimeBasedCircuitBreaker implements IBreaker {
     public void onFailure() {
         if (status == BreakerStatus.CLOSED) {
             lastFailureTimestampMillis = Instant.now().toEpochMilli();
-            if(halfOpenThreshold > 0) {
+            if (halfOpenThreshold > 0) {
                 status = BreakerStatus.HALF_OPEN;
             } else {
                 status = BreakerStatus.OPEN;
